@@ -1,19 +1,18 @@
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "./routes/Login";
 
 import './styles.scss';
-import "./App.css";
 
-function App() {
+
+function Home() {
   return (
-    <div className="App">
+    <div className="Home">
       <Header></Header>
-      <Login></Login>
+      <h2>Home Dashboard</h2>
       <Footer></Footer>
     </div>
   );
 }
 
-export default App;
+export default Home;

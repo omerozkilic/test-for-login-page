@@ -1,12 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { HOME_PATH } from "../Constant";
 import styled from "styled-components";
-import {
-  TextInput,
-  Checkbox,
-  Tooltip,
-  Button
-} from "carbon-components-react";
+import { TextInput, Checkbox, Tooltip, Button } from "carbon-components-react";
+import { history } from "../history";
 
 const PagesContainer = styled.div`
   width: 100%;
@@ -94,7 +90,7 @@ const HelpSection = styled.div`
   padding: 8px;
 `;
 
-class HomeRoute extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -107,7 +103,7 @@ class HomeRoute extends React.Component {
 
     this.auth = {
       email: "demo@demo.com",
-      password: "pa55w0rd"
+      password: "sifre"
     };
   }
 
@@ -133,9 +129,7 @@ class HomeRoute extends React.Component {
       this.state.passwordValue === this.auth.password
     ) {
       console.log("login succes");
-      let history = useHistory();
-      history.push("/home");
-      // history.push
+      history.push(HOME_PATH);
     } else {
       this.setState({ isNotLogin: true });
       window.location.reload();
@@ -285,4 +279,4 @@ class HomeRoute extends React.Component {
   }
 }
 
-export default HomeRoute;
+export default Login;
