@@ -1,6 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { TextInput, Checkbox, Tooltip, Button } from "carbon-components-react";
+import {
+  TextInput,
+  Checkbox,
+  Tooltip,
+  Button
+} from "carbon-components-react";
 
 const PagesContainer = styled.div`
   width: 100%;
@@ -24,12 +30,13 @@ const FormContent = styled.div`
 const FormHeader = styled.div`
   font-size: 30px;
   padding-bottom: 15px;
+  display: flex;
 `;
 
 const FormModel = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  margin-bottom: 40px;
   .bx--form-item {
     .bx--label {
       display: flex;
@@ -70,6 +77,18 @@ const FormModel = styled.div`
   }
 `;
 
+const NoAccount = styled.div`
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #5a5a5a;
+  padding: 25px 0 25px 0;
+  .noAccount {
+    display: flex;
+    color: #5a5a5a;
+    font-size: 16px;
+  }
+`;
+
 const HelpSection = styled.div`
   display: flex;
   padding: 8px;
@@ -103,6 +122,7 @@ class HomeRoute extends React.Component {
   };
 
   isEmail = val => {
+    // eslint-disable-next-line no-useless-escape
     let regex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
     return regex.test(val);
   };
@@ -112,19 +132,18 @@ class HomeRoute extends React.Component {
       this.state.mailValue === this.auth.email &&
       this.state.passwordValue === this.auth.password
     ) {
+      console.log("login succes");
+      let history = useHistory();
+      history.push("/home");
       // history.push
     } else {
       this.setState({ isNotLogin: true });
+      window.location.reload();
     }
   };
 
   render() {
-    const {
-      secondStep,
-      mailValue,
-      passwordValue,
-      isNotLogin
-    } = this.state;
+    const { secondStep, mailValue, passwordValue, isNotLogin } = this.state;
     return (
       <PagesContainer>
         <div
@@ -138,9 +157,15 @@ class HomeRoute extends React.Component {
             <FormContent>
               <FormHeader>IBM'de oturum açın</FormHeader>
               {secondStep ? (
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", margin: "10px 0 10px 0" }}>
                   {`${mailValue} olarak oturum açılıyor `}
-                  <a style={{ marginLeft: "5px" }}>Siz değil misiniz?</a>
+                  <a
+                    to="/"
+                    href="/"
+                    style={{ marginLeft: "5px", textDecoration: "none" }}
+                  >
+                    Siz değil misiniz?
+                  </a>
                 </div>
               ) : (
                 ""
@@ -155,7 +180,7 @@ class HomeRoute extends React.Component {
                     invalid={isNotLogin}
                     invalidText="Hatalı Email ya da parola. Lütfen yeniden deneyin!"
                     labelText={"Parola"}
-                    type="text"
+                    type="password"
                     onChange={this.onChange("passwordValue")}
                   />
                 ) : (
@@ -227,16 +252,31 @@ class HomeRoute extends React.Component {
                   </Button>
                 )}
               </FormModel>
+              <NoAccount>
+                <div className="noAccount">Hesabınız yok mu ?</div>
+                <a
+                  to="/"
+                  href="/"
+                  style={{ marginLeft: "5px", textDecoration: "none" }}
+                >
+                  Hesap Oluşturun
+                </a>
+              </NoAccount>
             </FormContent>
+
             <HelpSection>
               <div>Yardım istiyor musunuz?</div>
-              <div
+              <a
                 to="/"
                 href="/"
-                style={{ color: "#1268fb", marginLeft: "5px" }}
+                style={{
+                  color: "#1268fb",
+                  marginLeft: "5px",
+                  textDecoration: "none"
+                }}
               >
                 IBMid yardım masası ile iletişim kurun
-              </div>
+              </a>
             </HelpSection>
           </FormContainer>
         </div>

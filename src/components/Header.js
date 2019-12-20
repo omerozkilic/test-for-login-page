@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import logo from "../logo.png";
 
 const HaderContainer = styled.div`
   display: flex;
@@ -7,12 +8,18 @@ const HaderContainer = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 25px;
-  margin-left: 20px;
+  width: 100px;
+  height: 30px;
+  img {
+    width: 100px;
+  height: 30px;
+  }
 `;
 
 export default () => (
   <HaderContainer>
-    <Logo>IBM</Logo>
+    <Logo>
+      <img src={logo} alt="logo" />
+    </Logo>
   </HaderContainer>
 );

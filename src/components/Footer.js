@@ -9,13 +9,14 @@ const FooterContainer = styled.div`
   padding: 20px;
 `;
 
-const GoToPages = styled.div`
+const GoToPages = styled.a`
   color: #5a5a5a;
   text-decoration: none;
   padding-right: 20px;
   &:hover {
     color: #3b6caa;
     text-decoration: underline;
+    pointer-event: auto
   }
 `;
 
