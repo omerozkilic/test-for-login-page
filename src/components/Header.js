@@ -12,14 +12,19 @@ const Logo = styled.div`
   height: 30px;
   img {
     width: 100px;
-  height: 30px;
+    height: 30px;
   }
 `;
 
-export default () => (
-  <HaderContainer>
-    <Logo>
-      <img src={logo} alt="logo" />
-    </Logo>
-  </HaderContainer>
-);
+export default () => {
+  const goToHomePage = () => {
+    window.location.reload();
+  };
+  return (
+    <HaderContainer>
+      <Logo onClick={goToHomePage}>
+        <img src={logo} alt="logo" />
+      </Logo>
+    </HaderContainer>
+  );
+};

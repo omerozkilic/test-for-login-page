@@ -90,6 +90,12 @@ const HelpSection = styled.div`
   padding: 8px;
 `;
 
+const HomeDashboard = styled.div`
+  width: 100%;
+  height: calc(100vh - 106px);
+  background-color: #f4f4f4;
+`;
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -98,7 +104,8 @@ class Login extends React.Component {
       secondStep: false,
       mailValue: "",
       passwordValue: "",
-      isNotLogin: false
+      isNotLogin: false,
+      isLogin: false
     };
 
     this.auth = {
@@ -130,6 +137,7 @@ class Login extends React.Component {
     ) {
       console.log("login succes");
       history.push(HOME_PATH);
+      this.setState({ isLogin: true });
     } else {
       this.setState({ isNotLogin: true });
       window.location.reload();
@@ -137,8 +145,18 @@ class Login extends React.Component {
   };
 
   render() {
-    const { secondStep, mailValue, passwordValue, isNotLogin } = this.state;
-    return (
+    const {
+      secondStep,
+      mailValue,
+      passwordValue,
+      isNotLogin,
+      isLogin
+    } = this.state;
+    return isLogin ? (
+      <HomeDashboard>
+        <h2>Dashboard</h2>
+      </HomeDashboard>
+    ) : (
       <PagesContainer>
         <div
           style={{

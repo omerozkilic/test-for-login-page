@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Router } from "react-router-dom";
 
 // Styling
 import * as routes from "./Constant";
@@ -12,11 +12,13 @@ import Home from "./routes/Home";
 const Content = () => {
   return (
     <React.Fragment>
-      <Switch>
-        <Route exact path={routes.MAIN_PATH} render={() => <App />} />
+      <Router>
+        <Switch>
+          <Route exact path={routes.MAIN_PATH} render={() => <App />} />
 
-        <Route path={routes.HOME_PATH} render={() => <Home />} />
-      </Switch>
+          <Route path={routes.HOME_PATH} render={() => <Home />} />
+        </Switch>
+      </Router>
     </React.Fragment>
   );
 };
